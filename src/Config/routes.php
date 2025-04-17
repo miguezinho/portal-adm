@@ -40,11 +40,11 @@ return [
         ],
         '/users' => [
             'controller' => UserController::class,
-            'method' => 'users',
+            'method' => 'index',
             'auth' => true,
         ],
     ],
-    
+
     'POST' => [
         '/login' => [
             'controller' => AuthController::class,

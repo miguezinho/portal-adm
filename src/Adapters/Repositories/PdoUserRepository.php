@@ -52,4 +52,17 @@ class PdoUserRepository implements UserRepositoryInterface
             (int)$row['id']
         );
     }
+
+    public function list(): array
+    {
+        $stmt = $this->pdo->query("SELECT id, name, email FROM users");
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array_map(fn($row) => new UserEntity(
+            $row['name'],
+            $row['email'],
+            '',
+            (int)$row['id']
+        ), $rows);
+    }
 }
