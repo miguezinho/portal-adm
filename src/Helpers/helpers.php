@@ -45,3 +45,17 @@ if (! function_exists('redirect')) {
         die();
     }
 }
+
+if (!function_exists('maskCpf')) {
+    function maskCpf(string $cpf): string
+    {
+        return preg_replace('/(\d{3})(\d{3})(\d{3})(\d{2})/', '$1.$2.$3-$4', $cpf);
+    }
+}
+
+if (!function_exists('unmaskCpf')) {
+    function unmaskCpf(string $cpf): string
+    {
+        return preg_replace('/[^0-9]/', '', $cpf);
+    }
+}

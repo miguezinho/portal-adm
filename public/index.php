@@ -7,6 +7,11 @@ require __DIR__ . '/../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
+if ($_ENV['APP_ENV'] == 'development') {
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+}
+
 $requestUri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 

@@ -7,7 +7,7 @@ use Src\Controllers\UserController;
 
 return [
     'GET' => [
-        '/login'       => [
+        '/login' => [
             'controller' => AuthController::class,
             'method' => 'showLoginForm',
             'auth' => false,
@@ -20,7 +20,7 @@ return [
         '/logout' => [
             'controller' => AuthController::class,
             'method' => 'logout',
-            'auth'       => true,
+            'auth' => true,
         ],
 
         '/' => [
@@ -35,7 +35,12 @@ return [
         ],
         '/customers' => [
             'controller' => CustomerController::class,
-            'method' => 'customers',
+            'method' => 'index',
+            'auth' => true,
+        ],
+        '/customers/create' => [
+            'controller' => CustomerController::class,
+            'method' => 'create',
             'auth' => true,
         ],
         '/users' => [
@@ -56,9 +61,9 @@ return [
             'method' => 'register',
             'auth' => false,
         ],
-        '/customers' => [
+        '/customers/save' => [
             'controller' => CustomerController::class,
-            'method' => 'customers',
+            'method' => 'save',
             'auth' => true,
         ],
     ],
