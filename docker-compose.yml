@@ -1,0 +1,64 @@
+services:
+  app.portal_adm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "${APP_PORT:-8080}:80"
+    volumes:
+      - ".:/var/www/html"
+    networks:
+      - portal_adm
+    entrypoint: ["/bin/bash", "/var/www/html/scripts/docker-entrypoint.sh"]
+    depends_on:
+      - mysql.portal_adm
+      - redis.portal_adm
+
+  mysql.portal_adm:
+    image: "mysql:8.0"
+    ports:
+      - "${FORWARD_DB_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD:-secret}"
+      MYSQL_DATABASE: "${DB_DATABASE:-portal_adm}"
+    volumes:
+      - "portal_adm-mysql:/var/lib/mysql"
+      - ./src/Database:/docker-entrypoint-initdb.d
+    networks:
+      - portal_adm
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - "-p${DB_PASSWORD:-default_password}"
+      retries: 3
+      timeout: 5s
+
+  redis.portal_adm:
+    image: "redis:alpine"
+    ports:
+      - "${FORWARD_REDIS_PORT:-6379}:6379"
+    volumes:
+      - "portal_adm-redis:/data"
+    networks:
+      - portal_adm
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      retries: 3
+      timeout: 5s
+
+networks:
+  portal_adm:
+    driver: bridge
+
+volumes:
+  portal_adm-mysql:
+    driver: local
+  portal_adm-redis:
+    driver: local
