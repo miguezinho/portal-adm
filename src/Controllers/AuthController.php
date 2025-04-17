@@ -4,8 +4,8 @@ namespace Src\Controllers;
 
 use Src\Adapters\Repositories\PdoUserRepository;
 use Src\Config\DatabaseConfig;
-use Src\Core\UseCases\LoginUserUseCase;
-use Src\Core\UseCases\RegisterUserUseCase;
+use Src\Core\UseCases\UserLoginUseCase;
+use Src\Core\UseCases\UserRegisterUseCase;
 
 class AuthController
 {
@@ -25,7 +25,7 @@ class AuthController
     {
         $pdoConnection = DatabaseConfig::getPdoConnection();
         $repository = new PdoUserRepository($pdoConnection);
-        $useCase = new LoginUserUseCase($repository);
+        $useCase = new UserLoginUseCase($repository);
 
         $email = $input['email'] ?? '';
         $password = $input['password'] ?? '';
@@ -50,7 +50,7 @@ class AuthController
     {
         $pdoConnection = DatabaseConfig::getPdoConnection();
         $repository = new PdoUserRepository($pdoConnection);
-        $useCase = new RegisterUserUseCase($repository);
+        $useCase = new UserRegisterUseCase($repository);
 
         try {
             $user = $useCase->execute($input);

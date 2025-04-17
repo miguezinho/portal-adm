@@ -5,7 +5,7 @@ namespace Src\Core\UseCases;
 use Src\Core\Entities\UserEntity;
 use Src\Core\UseCases\Contracts\UserRepositoryInterface;
 
-class RegisterUserUseCase
+class UserRegisterUseCase
 {
     public function __construct(private UserRepositoryInterface $repo) {}
 
