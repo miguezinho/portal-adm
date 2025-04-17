@@ -4,6 +4,7 @@ namespace Src\Controllers;
 
 use Src\Adapters\Repositories\PdoUserRepository;
 use Src\Config\DatabaseConfig;
+use Src\Core\UseCases\LoginUserUseCase;
 use Src\Core\UseCases\RegisterUserUseCase;
 
 class AuthController
@@ -22,26 +23,28 @@ class AuthController
 
     public function login(array $input): void
     {
-        $email    = $input['email'] ?? '';
+        $pdoConnection = DatabaseConfig::getPdoConnection();
+        $repository = new PdoUserRepository($pdoConnection);
+        $useCase = new LoginUserUseCase($repository);
+
+        $email = $input['email'] ?? '';
         $password = $input['password'] ?? '';
-        // AQUI você valida no banco de dados, ORM, etc.
-        // Exemplo simples hard‑coded:
-        if ($email === 'admin@exemplo.com' && $password === 'senha123') {
-            // salva o usuário na sessão
+
+        try {
+            $user = $useCase->execute($email, $password);
+
             $_SESSION['user'] = [
-                'email' => $email,
-                'name'  => 'Administrador',
+                'id' => $user->getId(),
+                'name'  => $user->getName(),
+                'email' => $user->getEmail(),
             ];
 
-            // redireciona para área interna
-            header('Location: /dashboard');
-            exit;
+            redirect('/dashboard');
+        } catch (\Throwable $e) {
+            redirect('/login?errorMessage=' . urlencode($e->getMessage()));
         }
-
-        // volta pro login com erro (poderia usar flash message)
-        header('Location: /login?errorMessage=1');
-        exit;
     }
+
 
     public function register(array $input): void
     {
@@ -56,19 +59,15 @@ class AuthController
                 'name'  => $user->getName(),
                 'email' => $user->getEmail(),
             ];
-            header('Location: /dashboard');
-            exit;
+            redirect('/dashboard');
         } catch (\Throwable $e) {
-            dd($e->getMessage());
-            header('Location: /register?errorMessage=' . urlencode($e->getMessage()));
-            exit;
+            redirect('/register?errorMessage=' . urlencode($e->getMessage()));
         }
     }
 
     public function logout(): void
     {
         session_destroy();
-        header('Location: /login');
-        exit;
+        redirect('/login');
     }
 }

@@ -27,8 +27,7 @@ class RequestController
         $requiresAuth  = $action['auth'] ?? false;
 
         if ($requiresAuth && empty($_SESSION['user'])) {
-            header('Location: /login');
-            exit;
+            redirect('/login');
         }
 
         $input = [];

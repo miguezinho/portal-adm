@@ -26,8 +26,6 @@ if (! function_exists('view')) {
     }
 }
 
-
-
 if (! function_exists('dd')) {
     function dd(...$vars): void
     {
@@ -36,6 +34,14 @@ if (! function_exists('dd')) {
             var_dump($var);
             echo '</pre>';
         }
+        die();
+    }
+}
+
+if (! function_exists('redirect')) {
+    function redirect(string $route): void
+    {
+        header("Location: $route");
         die();
     }
 }

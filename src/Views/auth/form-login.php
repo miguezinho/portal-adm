@@ -1,3 +1,7 @@
+<?php if (isset($_GET['errorMessage'])): ?>
+    <p style="color:red;"><?= $_GET['errorMessage'] ?></p>
+<?php endif; ?>
+
 <form action="/login" method="POST" class="space-y-4">
     <div>
         <label for="email" class="block text-sm font-medium text-gray-700">E-mail</label>
