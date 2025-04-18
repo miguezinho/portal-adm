@@ -14,7 +14,6 @@ services:
     entrypoint: ["/bin/bash", "/var/www/html/scripts/docker-entrypoint.sh"]
     depends_on:
       - mysql.portal_adm
-      - redis.portal_adm
 
   mysql.portal_adm:
     image: "mysql:8.0"
@@ -37,28 +36,10 @@ services:
       retries: 3
       timeout: 5s
 
-  redis.portal_adm:
-    image: "redis:alpine"
-    ports:
-      - "${FORWARD_REDIS_PORT:-6379}:6379"
-    volumes:
-      - "portal_adm-redis:/data"
-    networks:
-      - portal_adm
-    healthcheck:
-      test:
-        - CMD
-        - redis-cli
-        - ping
-      retries: 3
-      timeout: 5s
-
 networks:
   portal_adm:
     driver: bridge
 
 volumes:
   portal_adm-mysql:
-    driver: local
-  portal_adm-redis:
     driver: local
