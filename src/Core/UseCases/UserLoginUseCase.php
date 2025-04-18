@@ -7,16 +7,16 @@ use Src\Core\UseCases\Contracts\UserRepositoryInterface;
 
 class UserLoginUseCase
 {
-    private UserRepositoryInterface $userRepository;
+    private UserRepositoryInterface $repository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $repository)
     {
-        $this->userRepository = $userRepository;
+        $this->repository = $repository;
     }
 
     public function execute(string $email, string $password): UserEntity
     {
-        $user = $this->userRepository->findByEmail($email);
+        $user = $this->repository->findByEmail($email);
 
         if (!$user || !password_verify($password, $user->getPasswordHash())) {
             throw new \InvalidArgumentException("Credenciais inválidas.");

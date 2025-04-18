@@ -73,3 +73,16 @@ if (!function_exists('unmaskRg')) {
         return preg_replace('/[^0-9]/', '', $rg);
     }
 }
+
+if (!function_exists('formatDateToBrazilian')) {
+    function formatDateToBrazilian(string $date): string
+    {
+        $dateObject = \DateTime::createFromFormat('Y-m-d', $date);
+
+        if (!$dateObject) {
+            throw new \InvalidArgumentException("Data inválida: {$date}");
+        }
+
+        return $dateObject->format('d/m/Y');
+    }
+}

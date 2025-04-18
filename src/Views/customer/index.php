@@ -22,7 +22,7 @@
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= $customer->getId() ?></td>
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= $customer->getName() ?></td>
-                        <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= $customer->getBirthDate() ?></td>
+                        <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= formatDateToBrazilian($customer->getBirthDate()) ?></td>
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= maskCpf($customer->getCpf()) ?></td>
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= maskRg($customer->getRg()) ?></td>
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= $customer->getPhone() ?></td>
@@ -39,6 +39,7 @@
                                         Excluir
                                     </button>
                                 </form>
+
                             </div>
                         </td>
                     </tr>

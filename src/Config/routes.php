@@ -71,5 +71,10 @@ return [
             'method' => 'save',
             'auth' => true,
         ],
+        '/customers/delete' => [
+            'controller' => CustomerController::class,
+            'method' => 'delete',
+            'auth' => true,
+        ]
     ],
 ];

@@ -7,7 +7,7 @@ use Src\Core\UseCases\Contracts\UserRepositoryInterface;
 
 class UserRegisterUseCase
 {
-    public function __construct(private UserRepositoryInterface $repo) {}
+    public function __construct(private UserRepositoryInterface $repository) {}
 
     public function execute(array $input): UserEntity
     {
@@ -17,13 +17,13 @@ class UserRegisterUseCase
         if (($input['password'] ?? '') !== ($input['password_confirmation'] ?? '')) {
             throw new \InvalidArgumentException("Senhas não conferem.");
         }
-        if ($this->repo->findByEmail($input['email'])) {
+        if ($this->repository->findByEmail($input['email'])) {
             throw new \InvalidArgumentException("E‑mail já cadastrado.");
         }
 
         $hash = password_hash($input['password'], PASSWORD_BCRYPT);
         $user = new UserEntity($input['name'], $input['email'], $hash);
 
-        return $this->repo->save($user);
+        return $this->repository->save($user);
     }
 }

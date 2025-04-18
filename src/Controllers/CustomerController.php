@@ -2,9 +2,14 @@
 
 namespace Src\Controllers;
 
+use Exception;
+use Src\Adapters\Repositories\PdoAddressRepository;
 use Src\Adapters\Repositories\PdoCustomerRepository;
 use Src\Config\DatabaseConfig;
 use Src\Core\Entities\CustomerEntity;
+use Src\Core\UseCases\AddressDeleteUseCase;
+use Src\Core\UseCases\AddressListUseCase;
+use Src\Core\UseCases\CustomerDeleteUseCase;
 use Src\Core\UseCases\CustomerFindUseCase;
 use Src\Core\UseCases\CustomerListUseCase;
 use Src\Core\UseCases\CustomerSaveUseCase;
@@ -66,6 +71,35 @@ class CustomerController
             $useCase = new CustomerSaveUseCase($repository);
 
             $useCase->execute($request);
+
+            redirect('/customers');
+        } catch (\Throwable $e) {
+            redirect('/customers/create?errorMessage=' . urlencode($e->getMessage()));
+        }
+    }
+
+    public function delete(array $request)
+    {
+        try {
+            $pdoConnection = DatabaseConfig::getPdoConnection();
+
+            $addressRepository = new PdoAddressRepository($pdoConnection);
+            $addressListUseCase = new AddressListUseCase($addressRepository);
+            $addressDeleteUseCase = new AddressDeleteUseCase($addressRepository);
+
+            $addresses = $addressListUseCase->execute($request['id']);
+            foreach ($addresses as $address) {
+                if (!$addressDeleteUseCase->execute($address->getId())) {
+                    throw new Exception("Falha ao deletar o endereço do cliente com ID: " . $address->getId());
+                }
+            }
+
+            $customerRepository = new PdoCustomerRepository($pdoConnection);
+            $customerDeleteUseCase = new CustomerDeleteUseCase($customerRepository);
+
+            if (!$customerDeleteUseCase->execute($request['id'])) {
+                throw new Exception("Falha ao deletar cliente com ID: " . $request['id']);
+            }
 
             redirect('/customers');
         } catch (\Throwable $e) {

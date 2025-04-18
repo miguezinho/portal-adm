@@ -4,7 +4,7 @@ namespace Src\Core\UseCases;
 
 use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
 
-class CustomerListUseCase
+class CustomerDeleteUseCase
 {
     private CustomerRepositoryInterface $repository;
 
@@ -13,8 +13,8 @@ class CustomerListUseCase
         $this->repository = $repository;
     }
 
-    public function execute(): array
+    public function execute(int $id): bool
     {
-        return $this->repository->list();
+        return $this->repository->delete($id);
     }
 }

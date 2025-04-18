@@ -7,16 +7,16 @@ use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
 
 class CustomerFindUseCase
 {
-    private CustomerRepositoryInterface $customerRepository;
+    private CustomerRepositoryInterface $repository;
     private string $searchType;
 
-    public function __construct(CustomerRepositoryInterface $customerRepository, string $searchType)
+    public function __construct(CustomerRepositoryInterface $repository, string $searchType)
     {
         if (!in_array($searchType, ['id', 'cpf', 'rg'], true)) {
             throw new \InvalidArgumentException("Invalid search type '{$searchType}'. Allowed types: 'id', 'cpf', 'rg'.");
         }
 
-        $this->customerRepository = $customerRepository;
+        $this->repository = $repository;
         $this->searchType = $searchType;
     }
 
@@ -47,7 +47,7 @@ class CustomerFindUseCase
             throw new \InvalidArgumentException("The value for 'id' must be an integer.");
         }
 
-        return $this->customerRepository->find($id);
+        return $this->repository->find($id);
     }
 
     private function findByCpf(string $cpf): ?CustomerEntity
@@ -56,7 +56,7 @@ class CustomerFindUseCase
             throw new \InvalidArgumentException("The value for 'cpf' must be a string.");
         }
 
-        return $this->customerRepository->findByCpf($cpf);
+        return $this->repository->findByCpf($cpf);
     }
 
     private function findByRg(string $rg): ?CustomerEntity
@@ -65,6 +65,6 @@ class CustomerFindUseCase
             throw new \InvalidArgumentException("The value for 'rg' must be a string.");
         }
 
-        return $this->customerRepository->findByRg($rg);
+        return $this->repository->findByRg($rg);
     }
 }

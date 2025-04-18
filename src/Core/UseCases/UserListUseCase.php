@@ -6,15 +6,15 @@ use Src\Core\UseCases\Contracts\UserRepositoryInterface;
 
 class UserListUseCase
 {
-    private UserRepositoryInterface $userRepository;
+    private UserRepositoryInterface $repository;
 
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $repository)
     {
-        $this->userRepository = $userRepository;
+        $this->repository = $repository;
     }
 
     public function execute(): array
     {
-        return $this->userRepository->list();
+        return $this->repository->list();
     }
 }
