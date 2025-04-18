@@ -21,6 +21,7 @@ class UserController
                 'title' => 'Usuários',
                 'headerTitle' => 'Lista de Usuários',
                 'users' => $users,
+                'icon' => 'fa-user-secret',
             ]);
         } catch (\Throwable $e) {
             throw $e;

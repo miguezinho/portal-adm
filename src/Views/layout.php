@@ -22,7 +22,7 @@
                 <ul>
                     <li class="p-4 hover:bg-gray-700"><a href="/dashboard"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a></li>
                     <li class="p-4 hover:bg-gray-700"><a href="/customers"><i class="fas fa-users mr-2"></i> Clientes</a></li>
-                    <li class="p-4 hover:bg-gray-700"><a href="/users"><i class="fas fa-user-shield mr-2"></i> Usuários</a></li>
+                    <li class="p-4 hover:bg-gray-700"><a href="/users"><i class="fas fa-user-secret mr-2"></i> Usuários</a></li>
                 </ul>
             </nav>
         </aside>
@@ -42,7 +42,7 @@
         <!-- Main Content -->
         <main class="flex-1">
             <header class="bg-white shadow p-4 flex items-center justify-between">
-                <h1 class="text-xl font-semibold"><i class="fas fa-home mr-2"></i> <?= $headerTitle ?? 'Bem-vindo!' ?></h1>
+                <h1 class="text-xl font-semibold"><i class="fas <?= $icon ?? 'fa-home' ?> mr-2"></i> <?= $headerTitle ?? 'Bem-vindo!' ?></h1>
                 <div class="flex items-center space-x-4 font-semibold">
                     <span><i class="fas fa-user-circle mr-2"></i><?= $_SESSION['user']['name'] ?></span>
                     <a href="/logout" class="text-blue-600 hover:underline"><i class="fas fa-sign-out-alt mr-2"></i> Sair</a>

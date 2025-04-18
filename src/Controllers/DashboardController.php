@@ -8,7 +8,8 @@ class DashboardController
     {
         return view('dashboard/index', [
             'headerTitle' => 'Dashboard',
-            'title' => 'Dashboard'
+            'title' => 'Dashboard',
+            'icon' => 'fa-tachometer'
         ]);
     }
 }

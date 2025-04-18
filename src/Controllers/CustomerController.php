@@ -30,6 +30,7 @@ class CustomerController
                 'title' => 'Clientes',
                 'headerTitle' => 'Lista de Clientes',
                 'customers' => $customers,
+                'icon' => 'fa-users-between-lines',
             ]);
         } catch (\Throwable $e) {
             throw $e;
@@ -41,6 +42,7 @@ class CustomerController
         return view('customer/form', [
             'title' => 'Cadastrar Cliente',
             'headerTitle' => 'Cadastrar Cliente',
+            'icon' => 'fa-users-between-lines',
             'customer' => new CustomerEntity(
                 $request['name'] ?? '',
                 $request['birth_date'] ?? '',
@@ -64,6 +66,7 @@ class CustomerController
                 'title' => 'Editar Cliente',
                 'headerTitle' => 'Editar Cliente',
                 'customer' => $customer,
+                'icon' => 'fa-users-between-lines',
             ]);
         } catch (\Throwable $e) {
             throw $e;
