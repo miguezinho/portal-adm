@@ -59,3 +59,17 @@ if (!function_exists('unmaskCpf')) {
         return preg_replace('/[^0-9]/', '', $cpf);
     }
 }
+
+if (!function_exists('maskRg')) {
+    function maskRg(string $rg): string
+    {
+        return preg_replace('/(\d{2})(\d{3})(\d{3})/', '$1.$2.$3', $rg);
+    }
+}
+
+if (!function_exists('unmaskRg')) {
+    function unmaskRg(string $rg): string
+    {
+        return preg_replace('/[^0-9]/', '', $rg);
+    }
+}

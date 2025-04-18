@@ -1,5 +1,7 @@
 <?php if (isset($_GET['errorMessage'])): ?>
-    <p style="color:red;"><?= $_GET['errorMessage'] ?></p>
+    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+        <p class="text-sm font-medium"><?= htmlspecialchars($_GET['errorMessage'], ENT_QUOTES, 'UTF-8') ?></p>
+    </div>
 <?php endif; ?>
 
 <form action="/customers/save" method="POST" class="grid grid-cols-2 gap-4 p-6 bg-white shadow-md rounded-lg">
@@ -36,7 +38,7 @@
     <div class="col-span-2 text-right">
         <button type="submit"
             class="bg-green-600 text-white py-2 px-6 rounded-md hover:bg-green-700 transition duration-200">
-            Salvar Cliente
+            Salvar
         </button>
     </div>
 </form>
@@ -50,25 +52,25 @@
 
     function cpfMask(value) {
         return value
-            .replace(/\D/g, '') // Remove non-numeric characters
-            .replace(/(\d{3})(\d)/, '$1.$2') // Add first dot
-            .replace(/(\d{3})(\d)/, '$1.$2') // Add second dot
-            .replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Add hyphen
+            .replace(/\D/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     }
 
     function rgMask(value) {
         return value
-            .replace(/\D/g, '') // Remove non-numeric characters
-            .replace(/(\d{2})(\d)/, '$1.$2') // Add first dot
-            .replace(/(\d{3})(\d)/, '$1.$2') // Add second dot
-            .replace(/(\d{3})(\d{1})$/, '$1-$2'); // Add hyphen
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1})$/, '$1-$2');
     }
 
     function phoneMask(value) {
         return value
-            .replace(/\D/g, '') // Remove non-numeric characters
-            .replace(/(\d{2})(\d)/, '($1) $2') // Add parentheses
-            .replace(/(\d{4,5})(\d{4})$/, '$1-$2'); // Add hyphen
+            .replace(/\D/g, '')
+            .replace(/(\d{2})(\d)/, '($1) $2')
+            .replace(/(\d{4,5})(\d{4})$/, '$1-$2');
     }
 
     document.addEventListener('DOMContentLoaded', function() {

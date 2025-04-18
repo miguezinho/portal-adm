@@ -1,5 +1,7 @@
 <?php if (isset($_GET['errorMessage'])): ?>
-    <p style="color:red;"><?= $_GET['errorMessage'] ?></p>
+    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+        <p class="text-sm font-medium"><?= htmlspecialchars($_GET['errorMessage'], ENT_QUOTES, 'UTF-8') ?></p>
+    </div>
 <?php endif; ?>
 
 <form action="/login" method="POST" class="space-y-4">

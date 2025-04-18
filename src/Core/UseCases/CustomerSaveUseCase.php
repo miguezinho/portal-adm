@@ -11,19 +11,26 @@ class CustomerSaveUseCase
 
     public function execute(array $input): CustomerEntity
     {
-        if (empty($input['name']) || empty($input['birth_date']) || empty($input['cpf']) || empty($input['rg']) || empty($input['phone'])) {
+        $cpf = unmaskCpf($input['cpf']);
+        $rg = unmaskRg($input['rg']);
+
+        if (empty($input['name']) || empty($input['birth_date']) || empty($cpf) || empty($rg) || empty($input['phone'])) {
             throw new \InvalidArgumentException("Todos os campos são obrigatórios.");
         }
 
-        if ($this->repository->findByCpf($input['cpf'])) {
+        if ($this->repository->findByCpf($cpf)) {
             throw new \InvalidArgumentException("CPF já cadastrado.");
+        }
+
+        if ($this->repository->findByRg($cpf)) {
+            throw new \InvalidArgumentException("RG já cadastrado.");
         }
 
         $customer = new CustomerEntity(
             $input['name'],
             $input['birth_date'],
-            unmaskCpf($input['cpf']),
-            $input['rg'],
+            $cpf,
+            $rg,
             $input['phone']
         );
 

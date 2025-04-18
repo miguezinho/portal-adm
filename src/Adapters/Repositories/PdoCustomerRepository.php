@@ -102,6 +102,26 @@ class PdoCustomerRepository implements CustomerRepositoryInterface
         );
     }
 
+    public function findByRg(string $rg): ?CustomerEntity
+    {
+        $stmt = $this->pdo->prepare("SELECT id, name, birth_date, cpf, rg, phone FROM customers WHERE rg = :rg");
+        $stmt->execute([':rg' => $rg]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (! $row) {
+            return null;
+        }
+
+        return new CustomerEntity(
+            $row['name'],
+            $row['birth_date'],
+            $row['cpf'],
+            $row['rg'],
+            $row['phone'],
+            (int) $row['id']
+        );
+    }
+
     public function list(): array
     {
         $stmt = $this->pdo->query("SELECT id, name, birth_date, cpf, rg, phone FROM customers");
