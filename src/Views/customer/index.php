@@ -200,39 +200,41 @@
             }
 
             let table = `
-            <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Rua</th>
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Número</th>
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Complemento</th>
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Bairro</th>
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Cidade</th>
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Estado</th>
-                        <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">CEP</th>
-                    </tr>
-                </thead>
-                <tbody>
-        `;
+                    <div class="overflow-x-auto w-full">
+                        <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Rua</th>
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Número</th>
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Complemento</th>
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Bairro</th>
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Cidade</th>
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">Estado</th>
+                                    <th class="text-left px-4 py-2 border-b-2 border-gray-200 text-gray-600">CEP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+    `;
 
             addresses.forEach(address => {
                 table += `
-                <tr>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.street}</td>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.number}</td>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.complement}</td>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.neighborhood}</td>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.city}</td>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.state}</td>
-                    <td class="px-4 py-2 border-b border-gray-200">${address.zip_code}</td>
-                </tr>
-            `;
+                        <tr>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.street}</td>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.number}</td>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.complement}</td>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.neighborhood}</td>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.city}</td>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.state}</td>
+                            <td class="px-4 py-2 border-b border-gray-200">${address.zip_code}</td>
+                        </tr>
+                    `;
             });
 
             table += `
-                </tbody>
-            </table>
-        `;
+                    </tbody>
+                </table>
+            </div>
+            `;
 
             return table;
         }
