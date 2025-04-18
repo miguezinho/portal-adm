@@ -13,8 +13,12 @@ class AddressListUseCase
         $this->repository = $repository;
     }
 
-    public function execute(int $customerId): array
+    public function execute($customerId = null): array
     {
-        return $this->repository->listByCustomerId($customerId);
+        if ($customerId) {
+            return $this->repository->listByCustomerId($customerId);
+        }
+
+        return $this->repository->list();
     }
 }

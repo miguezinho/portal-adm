@@ -67,6 +67,27 @@ class PdoAddressRepository implements AddressRepositoryInterface
         ), $rows);
     }
 
+    public function list(): array
+    {
+        $stmt = $this->pdo->prepare("SELECT id, customer_id, street, number, complement, neighborhood, city, state, zip_code FROM addresses");
+
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array_map(fn($row) => new AddressEntity(
+            $row['customer_id'],
+            $row['street'],
+            $row['neighborhood'],
+            $row['city'],
+            $row['state'],
+            $row['zip_code'],
+            $row['number'] ?? null,
+            $row['complement'] ?? null,
+            (int) $row['id']
+        ), $rows);
+    }
+
     public function delete(int $id): bool
     {
         $stmt = $this->pdo->prepare("DELETE FROM addresses WHERE id = :id");
