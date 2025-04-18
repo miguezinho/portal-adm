@@ -53,9 +53,10 @@
 </form>
 
 <script>
-    function applyMask(input, maskFunction) {
-        input.addEventListener('input', function() {
-            input.value = maskFunction(input.value);
+    function applyMask(selector, maskFunction) {
+        $(selector).on('input', function() {
+            const value = $(this).val();
+            $(this).val(maskFunction(value));
         });
     }
 
@@ -82,9 +83,9 @@
             .replace(/(\d{4,5})(\d{4})$/, '$1-$2');
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        applyMask(document.getElementById('cpf'), cpfMask);
-        applyMask(document.getElementById('rg'), rgMask);
-        applyMask(document.getElementById('phone'), phoneMask);
+    $(document).ready(function() {
+        applyMask('#cpf', cpfMask);
+        applyMask('#rg', rgMask);
+        applyMask('#phone', phoneMask);
     });
 </script>

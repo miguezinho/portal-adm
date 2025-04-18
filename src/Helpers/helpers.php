@@ -38,13 +38,19 @@ if (! function_exists('dd')) {
     }
 }
 
-if (! function_exists('redirect')) {
-    function redirect(string $route): void
+if (!function_exists('redirect')) {
+    function redirect(string $route, array $data = []): void
     {
+        if (!empty($data)) {
+            $queryString = http_build_query($data);
+            $route .= '?' . $queryString;
+        }
+
         header("Location: $route");
         die();
     }
 }
+
 
 if (!function_exists('maskCpf')) {
     function maskCpf(string $cpf): string
@@ -84,5 +90,13 @@ if (!function_exists('formatDateToBrazilian')) {
         }
 
         return $dateObject->format('d/m/Y');
+    }
+}
+
+if (!function_exists('responseJson')) {
+    function responseJson(array $data): string
+    {
+        header('Content-Type: application/json');
+        return json_encode($data, JSON_PRETTY_PRINT);
     }
 }

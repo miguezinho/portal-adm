@@ -48,6 +48,11 @@ return [
             'method' => 'edit',
             'auth' => true,
         ],
+        '/customers/addresses' => [
+            'controller' => CustomerController::class,
+            'method' => 'getAddresses',
+            'auth' => true,
+        ],
         '/users' => [
             'controller' => UserController::class,
             'method' => 'index',

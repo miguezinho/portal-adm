@@ -35,12 +35,18 @@ class CustomerController
         }
     }
 
-    public function create()
+    public function create(array $request)
     {
         return view('customer/form', [
             'title' => 'Cadastrar Cliente',
             'headerTitle' => 'Cadastrar Cliente',
-            'customer' => new CustomerEntity('', '', '', '', ''),
+            'customer' => new CustomerEntity(
+                $request['name'] ?? '',
+                $request['birth_date'] ?? '',
+                $request['cpf'] ?? '',
+                $request['rg'] ?? '',
+                $request['phone'] ?? '',
+            ),
         ]);
     }
 
@@ -74,7 +80,8 @@ class CustomerController
 
             redirect('/customers');
         } catch (\Throwable $e) {
-            redirect('/customers/create?errorMessage=' . urlencode($e->getMessage()));
+            $action = isset($request['id']) ? 'edit' : 'create';
+            redirect("/customers/$action", array_merge($request, ['errorMessage' => $e->getMessage()]));
         }
     }
 
@@ -103,7 +110,50 @@ class CustomerController
 
             redirect('/customers');
         } catch (\Throwable $e) {
-            redirect('/customers/create?errorMessage=' . urlencode($e->getMessage()));
+            redirect('/customers', ['errorMessage' => $e->getMessage()]);
+        }
+    }
+
+    public function getAddresses(array $request)
+    {
+        try {
+            $pdoConnection = DatabaseConfig::getPdoConnection();
+
+            $addressRepository = new PdoAddressRepository($pdoConnection);
+            $addressListUseCase = new AddressListUseCase($addressRepository);
+
+            $customerRepository = new PdoCustomerRepository($pdoConnection);
+            $customerFindUseCase = new CustomerFindUseCase($customerRepository, 'id');
+
+            $customer = $customerFindUseCase->execute($request['id']);
+            $customerAddresses = $addressListUseCase->execute($customer->getId());
+
+            $addresses = [];
+            foreach ($customerAddresses as $address) {
+                $addresses[] = [
+                    'id' => $address->getId(),
+                    'customer_id' => $address->getCustomer_id(),
+                    'street' => $address->getStreet(),
+                    'number' => $address->getNumber(),
+                    'complement' => $address->getComplement(),
+                    'neighborhood' => $address->getNeighborhood(),
+                    'city' => $address->getCity(),
+                    'state' => $address->getState(),
+                    'zip_code' => $address->getZip_code(),
+                ];
+            }
+
+            $data = [
+                'customer' => [
+                    'id' => $customer->getId(),
+                    'name' => $customer->getName(),
+                    'addresses' => $addresses
+                ]
+            ];
+
+            return responseJson($data);
+        } catch (\Throwable $e) {
+            return responseJson(['error' => $e->getMessage()]);
         }
     }
 }

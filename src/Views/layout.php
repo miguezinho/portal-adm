@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'Portal Administrativo' ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -32,12 +34,12 @@
                 </div>
             </header>
 
-
             <div class="p-4">
                 <?= $content ?>
             </div>
         </main>
     </div>
+
 </body>
 
 </html>
