@@ -46,14 +46,14 @@ class AuthController
     }
 
 
-    public function register(array $input): void
+    public function register(array $request): void
     {
         $pdoConnection = DatabaseConfig::getPdoConnection();
         $repository = new PdoUserRepository($pdoConnection);
         $useCase = new UserRegisterUseCase($repository);
 
         try {
-            $user = $useCase->execute($input);
+            $user = $useCase->execute($request);
             $_SESSION['user'] = [
                 'id' => $user->getId(),
                 'name'  => $user->getName(),

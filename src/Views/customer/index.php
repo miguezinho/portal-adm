@@ -14,6 +14,7 @@
                     <th class="text-left px-6 py-3 border-b-2 border-gray-200 text-gray-600 font-semibold">CPF</th>
                     <th class="text-left px-6 py-3 border-b-2 border-gray-200 text-gray-600 font-semibold">RG</th>
                     <th class="text-left px-6 py-3 border-b-2 border-gray-200 text-gray-600 font-semibold">Telefone</th>
+                    <th class="text-left px-6 py-3 border-b-2 border-gray-200 text-gray-600 font-semibold">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,21 @@
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= maskCpf($customer->getCpf()) ?></td>
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= maskRg($customer->getRg()) ?></td>
                         <td class="px-6 py-4 border-b border-gray-200 text-gray-700"><?= $customer->getPhone() ?></td>
+                        <td class="px-6 py-4 border-b border-gray-200 text-gray-700">
+                            <div class="flex space-x-2">
+                                <a href="/customers/edit?id=<?= $customer->getId() ?>"
+                                    class="bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-semibold py-1 px-3 rounded-lg shadow-md">
+                                    Editar
+                                </a>
+                                <form action="/customers/delete" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este cliente?')">
+                                    <input type="hidden" name="id" value="<?= $customer->getId() ?>">
+                                    <button type="submit"
+                                        class="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-1 px-3 rounded-lg shadow-md">
+                                        Excluir
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

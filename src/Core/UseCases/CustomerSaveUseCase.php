@@ -9,31 +9,89 @@ class CustomerSaveUseCase
 {
     public function __construct(private CustomerRepositoryInterface $repository) {}
 
-    public function execute(array $input): CustomerEntity
+    public function execute(array $data): CustomerEntity
     {
-        $cpf = unmaskCpf($input['cpf']);
-        $rg = unmaskRg($input['rg']);
+        $this->validateRequiredFields($data);
 
-        if (empty($input['name']) || empty($input['birth_date']) || empty($cpf) || empty($rg) || empty($input['phone'])) {
-            throw new \InvalidArgumentException("Todos os campos são obrigatórios.");
+        $cpf = unmaskCpf($data['cpf']);
+        $rg = unmaskRg($data['rg']);
+
+        if (!empty($data['id'])) {
+            return $this->updateCustomer($data, $cpf, $rg);
         }
 
+        return $this->createCustomer($data, $cpf, $rg);
+    }
+
+    private function validateRequiredFields(array $data): void
+    {
+        $requiredFields = ['name', 'birth_date', 'cpf', 'rg', 'phone'];
+
+        foreach ($requiredFields as $field) {
+            if (empty($data[$field])) {
+                throw new \InvalidArgumentException("Todos os campos são obrigatórios.");
+            }
+        }
+    }
+
+    private function updateCustomer(array $data, string $cpf, string $rg): CustomerEntity
+    {
+        $customer = $this->repository->find((int)$data['id']);
+
+        if (!$customer) {
+            throw new \InvalidArgumentException("Cliente com o ID fornecido não encontrado.");
+        }
+
+        $this->validateUniqueFieldsForUpdate($customer->getId(), $cpf, $rg);
+
+        $updatedCustomer = new CustomerEntity(
+            $data['name'],
+            $data['birth_date'],
+            $cpf,
+            $rg,
+            $data['phone'],
+            (int) $data['id']
+        );
+
+        return $this->repository->edit($updatedCustomer);
+    }
+
+    private function createCustomer(array $data, string $cpf, string $rg): CustomerEntity
+    {
+        $this->validateUniqueFields($cpf, $rg);
+
+        $newCustomer = new CustomerEntity(
+            $data['name'],
+            $data['birth_date'],
+            $cpf,
+            $rg,
+            $data['phone']
+        );
+
+        return $this->repository->save($newCustomer);
+    }
+
+    private function validateUniqueFields(string $cpf, string $rg): void
+    {
         if ($this->repository->findByCpf($cpf)) {
             throw new \InvalidArgumentException("CPF já cadastrado.");
         }
 
-        if ($this->repository->findByRg($cpf)) {
+        if ($this->repository->findByRg($rg)) {
             throw new \InvalidArgumentException("RG já cadastrado.");
         }
+    }
 
-        $customer = new CustomerEntity(
-            $input['name'],
-            $input['birth_date'],
-            $cpf,
-            $rg,
-            $input['phone']
-        );
+    private function validateUniqueFieldsForUpdate(int $currentCustomerId, string $cpf, string $rg): void
+    {
+        $existingCpf = $this->repository->findByCpf($cpf);
+        if ($existingCpf && $existingCpf->getId() !== $currentCustomerId) {
+            throw new \InvalidArgumentException("CPF já cadastrado.");
+        }
 
-        return $this->repository->save($customer);
+        $existingRg = $this->repository->findByRg($rg);
+        if ($existingRg && $existingRg->getId() !== $currentCustomerId) {
+            throw new \InvalidArgumentException("RG já cadastrado.");
+        }
     }
 }

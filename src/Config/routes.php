@@ -43,6 +43,11 @@ return [
             'method' => 'create',
             'auth' => true,
         ],
+        '/customers/edit' => [
+            'controller' => CustomerController::class,
+            'method' => 'edit',
+            'auth' => true,
+        ],
         '/users' => [
             'controller' => UserController::class,
             'method' => 'index',
