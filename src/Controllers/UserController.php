@@ -18,8 +18,8 @@ class UserController
             $users = $useCase->execute();
 
             return view('user/index', [
-                'title' => 'Usuários',
-                'headerTitle' => 'Lista de Usuários',
+                'title' => 'Guardiões',
+                'headerTitle' => 'Lista de Guardiões',
                 'users' => $users,
                 'icon' => 'fa-user-secret',
             ]);

@@ -22,7 +22,7 @@
                 <ul>
                     <li class="p-4 hover:bg-gray-700"><a href="/dashboard"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</a></li>
                     <li class="p-4 hover:bg-gray-700"><a href="/customers"><i class="fas fa-users mr-2"></i> Clientes</a></li>
-                    <li class="p-4 hover:bg-gray-700"><a href="/users"><i class="fas fa-user-secret mr-2"></i> Usuários</a></li>
+                    <li class="p-4 hover:bg-gray-700"><a href="/users"><i class="fas fa-user-secret mr-2"></i> Guardiões</a></li>
                 </ul>
             </nav>
         </aside>
