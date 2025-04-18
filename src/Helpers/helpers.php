@@ -94,8 +94,9 @@ if (!function_exists('formatDateToBrazilian')) {
 }
 
 if (!function_exists('responseJson')) {
-    function responseJson(array $data): string
+    function responseJson(array $data, int $statusCode = 200): string
     {
+        http_response_code($statusCode);
         header('Content-Type: application/json');
         return json_encode($data, JSON_PRETTY_PRINT);
     }

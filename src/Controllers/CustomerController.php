@@ -9,6 +9,7 @@ use Src\Config\DatabaseConfig;
 use Src\Core\Entities\CustomerEntity;
 use Src\Core\UseCases\AddressDeleteUseCase;
 use Src\Core\UseCases\AddressListUseCase;
+use Src\Core\UseCases\AddressSaveUseCase;
 use Src\Core\UseCases\CustomerDeleteUseCase;
 use Src\Core\UseCases\CustomerFindUseCase;
 use Src\Core\UseCases\CustomerListUseCase;
@@ -85,6 +86,21 @@ class CustomerController
         }
     }
 
+    public function saveAddress(array $request)
+    {
+        try {
+            $pdoConnection = DatabaseConfig::getPdoConnection();
+            $addressRepository = new PdoAddressRepository($pdoConnection);
+            $addressSaveUseCase = new AddressSaveUseCase($addressRepository);
+
+            $addressSaveUseCase->execute($request);
+
+            return responseJson(['success' => 'Endereço salvo com sucesso!'], 200);
+        } catch (\Throwable $e) {
+            return responseJson(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function delete(array $request)
     {
         try {
@@ -132,14 +148,14 @@ class CustomerController
             foreach ($customerAddresses as $address) {
                 $addresses[] = [
                     'id' => $address->getId(),
-                    'customer_id' => $address->getCustomer_id(),
+                    'customer_id' => $address->getCustomerId(),
                     'street' => $address->getStreet(),
                     'number' => $address->getNumber(),
                     'complement' => $address->getComplement(),
                     'neighborhood' => $address->getNeighborhood(),
                     'city' => $address->getCity(),
                     'state' => $address->getState(),
-                    'zip_code' => $address->getZip_code(),
+                    'zip_code' => $address->getZipCode(),
                 ];
             }
 
@@ -151,9 +167,9 @@ class CustomerController
                 ]
             ];
 
-            return responseJson($data);
+            return responseJson($data, 200);
         } catch (\Throwable $e) {
-            return responseJson(['error' => $e->getMessage()]);
+            return responseJson(['error' => $e->getMessage()], 500);
         }
     }
 }

@@ -80,6 +80,11 @@ return [
             'controller' => CustomerController::class,
             'method' => 'delete',
             'auth' => true,
-        ]
+        ],
+        '/customers/address' => [
+            'controller' => CustomerController::class,
+            'method' => 'saveAddress',
+            'auth' => true,
+        ],
     ],
 ];
