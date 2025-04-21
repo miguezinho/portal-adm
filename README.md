@@ -50,7 +50,7 @@ O comando acima irá preparar todo o ambiente e instalar as dependências necess
 
 ## Configurações opcionais de portas
 
-Se necessário, você pode alterar as portas padrão utilizadas pela aplicação, banco de dados ou Redis. Para isso, basta editar as seguintes variáveis no arquivo `.env` do seu projeto:
+Se necessário, você pode alterar as portas padrão utilizadas pela aplicação ou banco de dados. Para isso, basta editar as seguintes variáveis no arquivo `.env` do seu projeto:
 
 - **APP_PORT**: Define a porta que a aplicação web irá utilizar. Se você precisar rodar a aplicação em uma porta diferente, altere este valor.
 - **FORWARD_DB_PORT**: Define a porta que o banco de dados MySQL usará. Caso você precise usar uma porta diferente para o banco, altere este valor.
