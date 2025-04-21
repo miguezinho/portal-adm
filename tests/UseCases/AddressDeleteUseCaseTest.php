@@ -4,12 +4,13 @@ namespace Tests\UseCases;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
+use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\UseCases\AddressDeleteUseCase;
 use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
 
 class AddressDeleteUseCaseTest extends TestCase
 {
-    /** @var AddressRepositoryInterface&\PHPUnit\Framework\MockObject\MockObject */
+    /** @var AddressRepositoryInterface&MockObject */
     private AddressRepositoryInterface $repositoryMock;
 
     protected function setUp(): void
