@@ -3,7 +3,6 @@
 namespace Tests\UseCases;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\Entities\CustomerEntity;
@@ -12,7 +11,7 @@ use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
 
 class CustomerSaveUseCaseTest extends TestCase
 {
-     /** @var CustomerRepositoryInterface&MockObject */
+    /** @var CustomerRepositoryInterface&MockObject */
     private CustomerRepositoryInterface $repositoryMock;
 
     protected function setUp(): void
@@ -20,7 +19,6 @@ class CustomerSaveUseCaseTest extends TestCase
         $this->repositoryMock = $this->createMock(CustomerRepositoryInterface::class);
     }
 
-    #[Test]
     #[TestDox("Cria um cliente com sucesso")]
     public function testCreateCustomerSuccessfully(): void
     {
@@ -69,7 +67,6 @@ class CustomerSaveUseCaseTest extends TestCase
         $this->assertEquals($expectedCustomer->getName(), $result->getName());
     }
 
-    #[Test]
     #[TestDox("Atualiza um cliente com sucesso")]
     public function testUpdateCustomerSuccessfully(): void
     {
@@ -122,7 +119,6 @@ class CustomerSaveUseCaseTest extends TestCase
         $this->assertEquals($existingCustomer->getName(), $result->getName());
     }
 
-    #[Test]
     #[TestDox("Lança exceção quando os campos obrigatórios estão ausentes")]
     public function testThrowsExceptionForMissingRequiredFields(): void
     {
@@ -141,7 +137,6 @@ class CustomerSaveUseCaseTest extends TestCase
         $useCase->execute($data);
     }
 
-    #[Test]
     #[TestDox("Lança exceção quando tenta criar cliente com CPF duplicado")]
     public function testThrowsExceptionForDuplicateCpf(): void
     {
@@ -174,7 +169,6 @@ class CustomerSaveUseCaseTest extends TestCase
         $useCase->execute($data);
     }
 
-    #[Test]
     #[TestDox("Lança exceção quando tenta criar cliente com RG duplicado")]
     public function testThrowsExceptionForDuplicateRg(): void
     {
