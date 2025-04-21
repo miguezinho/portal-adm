@@ -31,6 +31,9 @@ class CustomerController
                 'headerTitle' => 'Lista de Clientes',
                 'customers' => $customers,
                 'icon' => 'fa-users-between-lines',
+                'scripts' => [
+                    'customer.js'
+                ]
             ]);
         } catch (\Throwable $e) {
             throw $e;

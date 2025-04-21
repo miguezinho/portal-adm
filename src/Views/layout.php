@@ -5,10 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'Portal Administrativo' ?></title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <?php if (!empty($scripts) && is_array($scripts)) { ?>
+        <?php foreach ($scripts as $script) { ?>
+            <script src="js/<?= $script ?>"></script>
+        <?php } ?>
+    <?php } ?>
 </head>
 
 <body class="bg-gray-100">
@@ -56,8 +61,8 @@
     </div>
 
     <script>
-        $(document).ready(function () {
-            $('#toggle-sidebar').on('click', function () {
+        $(document).ready(function() {
+            $('#toggle-sidebar').on('click', function() {
                 $('#sidebar').toggleClass('hidden');
             });
         });
