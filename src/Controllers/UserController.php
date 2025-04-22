@@ -4,7 +4,7 @@ namespace Src\Controllers;
 
 use Src\Adapters\Repositories\PdoUserRepository;
 use Src\Config\DatabaseConfig;
-use Src\Core\UseCases\UserListUseCase;
+use Src\Core\UseCases\User\UserListUseCase;
 
 class UserController
 {

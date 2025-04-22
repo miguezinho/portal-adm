@@ -5,7 +5,7 @@ namespace Tests\UseCases;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
-use Src\Core\UseCases\AddressListUseCase;
+use Src\Core\UseCases\Address\AddressListUseCase;
 use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
 
 class AddressListUseCaseTest extends TestCase

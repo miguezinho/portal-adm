@@ -6,9 +6,9 @@ use Src\Adapters\Repositories\PdoAddressRepository;
 use Src\Adapters\Repositories\PdoCustomerRepository;
 use Src\Adapters\Repositories\PdoUserRepository;
 use Src\Config\DatabaseConfig;
-use Src\Core\UseCases\AddressListUseCase;
-use Src\Core\UseCases\CustomerListUseCase;
-use Src\Core\UseCases\UserListUseCase;
+use Src\Core\UseCases\Address\AddressListUseCase;
+use Src\Core\UseCases\Customer\CustomerListUseCase;
+use Src\Core\UseCases\User\UserListUseCase;
 
 class DashboardController
 {

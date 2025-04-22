@@ -7,13 +7,13 @@ use Src\Adapters\Repositories\PdoAddressRepository;
 use Src\Adapters\Repositories\PdoCustomerRepository;
 use Src\Config\DatabaseConfig;
 use Src\Core\Entities\CustomerEntity;
-use Src\Core\UseCases\AddressDeleteUseCase;
-use Src\Core\UseCases\AddressListUseCase;
-use Src\Core\UseCases\AddressSaveUseCase;
-use Src\Core\UseCases\CustomerDeleteUseCase;
-use Src\Core\UseCases\CustomerFindUseCase;
-use Src\Core\UseCases\CustomerListUseCase;
-use Src\Core\UseCases\CustomerSaveUseCase;
+use Src\Core\UseCases\Address\AddressDeleteUseCase;
+use Src\Core\UseCases\Address\AddressListUseCase;
+use Src\Core\UseCases\Address\AddressSaveUseCase;
+use Src\Core\UseCases\Customer\CustomerDeleteUseCase;
+use Src\Core\UseCases\Customer\CustomerFindUseCase;
+use Src\Core\UseCases\Customer\CustomerListUseCase;
+use Src\Core\UseCases\Customer\CustomerSaveUseCase;
 
 class CustomerController
 {

@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\Entities\AddressEntity;
-use Src\Core\UseCases\AddressSaveUseCase;
+use Src\Core\UseCases\Address\AddressSaveUseCase;
 use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
 
 class AddressSaveUseCaseTest extends TestCase

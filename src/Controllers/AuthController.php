@@ -4,8 +4,8 @@ namespace Src\Controllers;
 
 use Src\Adapters\Repositories\PdoUserRepository;
 use Src\Config\DatabaseConfig;
-use Src\Core\UseCases\UserLoginUseCase;
-use Src\Core\UseCases\UserRegisterUseCase;
+use Src\Core\UseCases\User\UserLoginUseCase;
+use Src\Core\UseCases\User\UserRegisterUseCase;
 
 class AuthController
 {

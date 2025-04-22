@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\Entities\UserEntity;
-use Src\Core\UseCases\UserRegisterUseCase;
+use Src\Core\UseCases\User\UserRegisterUseCase;
 use Src\Core\UseCases\Contracts\UserRepositoryInterface;
 
 class UserRegisterUseCaseTest extends TestCase

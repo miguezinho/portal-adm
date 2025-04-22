@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Core\UseCases;
+namespace Src\Core\UseCases\Customer;
 
 use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
 
