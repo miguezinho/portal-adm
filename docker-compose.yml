@@ -32,7 +32,7 @@ services:
         - CMD
         - mysqladmin
         - ping
-        - "-p${DB_PASSWORD:-default_password}"
+        - "-p${DB_PASSWORD:-secret}"
       retries: 3
       timeout: 5s
 
