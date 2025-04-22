@@ -19,6 +19,8 @@ Este projeto foi desenvolvido seguindo os princípios de **Clean Architecture** 
 
 A aplicação foi desenvolvida com testes unitários em mente, utilizando  **PHPUnit** para garantir a qualidade e estabilidade do código. Os testes foram estruturados para garantir que os **casos de uso**, camada onde fica concentrado a **lógica de negócio** funcionem de maneira isolada, sem dependências externas.
 
+Acompanhe a última execução dos testes, acesse o [relatório de ações do GitHub](../../actions) do repositório. Lá você encontra o histórico das execuções automáticas e os cenários que foram validados.
+
 <br>
 
 # Configuração Local
