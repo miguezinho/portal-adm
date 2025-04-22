@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Core\UseCases;
+namespace Src\Core\UseCases\Address;
 
 use Src\Core\Entities\AddressEntity;
 use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
