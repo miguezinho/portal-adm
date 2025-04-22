@@ -24,7 +24,7 @@ class UserLoginUseCaseTest extends TestCase
     {
         $email = 'rafael@example.com';
         $password = 'validPassword123';
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         $user = new UserEntity('Rafael Miguel', $email, $hashedPassword, 1);
 
         $this->repositoryMock
@@ -46,7 +46,7 @@ class UserLoginUseCaseTest extends TestCase
     {
         $email = 'rafael@example.com';
         $password = 'invalidPassword123';
-        $user = new UserEntity('Rafael Miguel', $email, password_hash('validPassword123', PASSWORD_DEFAULT), 1);
+        $user = new UserEntity('Rafael Miguel', $email, password_hash('validPassword123', PASSWORD_BCRYPT), 1);
 
         $this->repositoryMock
             ->expects($this->once())
