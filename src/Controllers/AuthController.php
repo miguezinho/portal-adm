@@ -11,6 +11,10 @@ class AuthController
 {
     public function showLoginForm(): string
     {
+        if (!empty($_SESSION['user'])) {
+            redirect('/dashboard');
+        }
+
         return view('auth/form-login', [], 'layout-login');
     }
 
