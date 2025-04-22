@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\UseCases;
+namespace Tests\UseCases\Customer;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
