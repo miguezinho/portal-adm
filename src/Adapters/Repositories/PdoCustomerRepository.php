@@ -4,7 +4,7 @@ namespace Src\Adapters\Repositories;
 
 use PDO;
 use Src\Core\Entities\CustomerEntity;
-use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
+use Src\Core\Contracts\CustomerRepositoryInterface;
 
 class PdoCustomerRepository implements CustomerRepositoryInterface
 {

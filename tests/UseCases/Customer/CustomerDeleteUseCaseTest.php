@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\UseCases\Customer\CustomerDeleteUseCase;
-use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
+use Src\Core\Contracts\CustomerRepositoryInterface;
 
 class CustomerDeleteUseCaseTest extends TestCase
 {

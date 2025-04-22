@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\Entities\CustomerEntity;
 use Src\Core\UseCases\Customer\CustomerFindUseCase;
-use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
+use Src\Core\Contracts\CustomerRepositoryInterface;
 
 class CustomerFindUseCaseTest extends TestCase
 {

@@ -2,7 +2,7 @@
 
 namespace Src\Core\UseCases\User;
 
-use Src\Core\UseCases\Contracts\UserRepositoryInterface;
+use Src\Core\Contracts\UserRepositoryInterface;
 
 class UserListUseCase
 {

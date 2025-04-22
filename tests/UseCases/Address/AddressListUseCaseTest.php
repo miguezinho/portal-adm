@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\UseCases\Address\AddressListUseCase;
-use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
+use Src\Core\Contracts\AddressRepositoryInterface;
 
 class AddressListUseCaseTest extends TestCase
 {

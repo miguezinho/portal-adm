@@ -4,7 +4,7 @@ namespace Src\Adapters\Repositories;
 
 use PDO;
 use Src\Core\Entities\AddressEntity;
-use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
+use Src\Core\Contracts\AddressRepositoryInterface;
 
 class PdoAddressRepository implements AddressRepositoryInterface
 {

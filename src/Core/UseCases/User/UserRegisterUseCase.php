@@ -3,7 +3,7 @@
 namespace Src\Core\UseCases\User;
 
 use Src\Core\Entities\UserEntity;
-use Src\Core\UseCases\Contracts\UserRepositoryInterface;
+use Src\Core\Contracts\UserRepositoryInterface;
 
 class UserRegisterUseCase
 {

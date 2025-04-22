@@ -3,7 +3,7 @@
 namespace Src\Core\UseCases\Address;
 
 use Src\Core\Entities\AddressEntity;
-use Src\Core\UseCases\Contracts\AddressRepositoryInterface;
+use Src\Core\Contracts\AddressRepositoryInterface;
 
 class AddressSaveUseCase
 {

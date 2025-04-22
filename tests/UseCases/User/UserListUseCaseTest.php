@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use Src\Core\UseCases\User\UserListUseCase;
-use Src\Core\UseCases\Contracts\UserRepositoryInterface;
+use Src\Core\Contracts\UserRepositoryInterface;
 use Src\Core\Entities\UserEntity;
 
 class UserListUseCaseTest extends TestCase

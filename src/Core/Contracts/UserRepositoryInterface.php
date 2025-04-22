@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Core\UseCases\Contracts;
+namespace Src\Core\Contracts;
 
 use Src\Core\Entities\UserEntity;
 

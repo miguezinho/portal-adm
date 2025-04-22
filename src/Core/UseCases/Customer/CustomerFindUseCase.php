@@ -3,7 +3,7 @@
 namespace Src\Core\UseCases\Customer;
 
 use Src\Core\Entities\CustomerEntity;
-use Src\Core\UseCases\Contracts\CustomerRepositoryInterface;
+use Src\Core\Contracts\CustomerRepositoryInterface;
 
 class CustomerFindUseCase
 {

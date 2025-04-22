@@ -4,7 +4,7 @@ namespace Src\Adapters\Repositories;
 
 use PDO;
 use Src\Core\Entities\UserEntity;
-use Src\Core\UseCases\Contracts\UserRepositoryInterface;
+use Src\Core\Contracts\UserRepositoryInterface;
 
 class PdoUserRepository implements UserRepositoryInterface
 {
