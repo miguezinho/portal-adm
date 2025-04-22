@@ -64,6 +64,9 @@ class CustomerController
             $useCase = new CustomerFindUseCase($repository, 'id');
 
             $customer = $useCase->execute($request['id']);
+            if (!$customer) {
+                throw new \InvalidArgumentException("Cliente não encontrado!");
+            }
 
             return view('customer/form', [
                 'title' => 'Editar Cliente',
